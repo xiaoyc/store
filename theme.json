@@ -1,0 +1,7 @@
+﻿{
+  "SystemName": "YourStore",
+  "Title": "YourStore theme",
+  "SupportRTL": true,
+  "PreviewImageUrl": "~/Themes/YourStore/preview.jpg",
+  "PreviewText": "The 'YourStore' site theme"
+}

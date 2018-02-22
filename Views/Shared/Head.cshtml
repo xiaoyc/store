@@ -1,0 +1,49 @@
+﻿@using Nop.Core
+@using Nop.Services.Helpers
+@using Nop.Web.Framework.UI
+@inject IWorkContext workContext
+@inject IThemeContext themeContext
+@inject IUserAgentHelper userAgentHelper
+@{
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+    var themeName = themeContext.WorkingThemeName;
+    var isIe8 = userAgentHelper.IsIe8();
+
+    <!-- External Plugins CSS -->
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/slick/slick.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/slick/slick-theme.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/magnific-popup/magnific-popup.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/nouislider/nouislider.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/bootstrap-select/bootstrap-select.css");
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/external/rs-plugin/css/settings.css");
+    <!-- Custom CSS -->
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/style.css");
+    <!-- Icon Fonts  -->
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/font/style.css");
+    <!-- Head Libs -->
+    <!-- Modernizr -->
+    Html.AddScriptParts($"~/Themes/{themeName}/Content/external/modernizr/modernizr.js");
+
+
+     <!-- jQuery 1.10.1-->
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/jquery/jquery-2.1.4.min.js");
+    <!-- Bootstrap 3-->
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/bootstrap/bootstrap.min.js");
+    <!-- Specific Page External Plugins -->
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/slick/slick.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/bootstrap-select/bootstrap-select.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/countdown/jquery.plugin.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/countdown/jquery.countdown.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/instafeed/instafeed.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/magnific-popup/jquery.magnific-popup.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/isotope/isotope.pkgd.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/imagesloaded/imagesloaded.pkgd.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/colorbox/jquery.colorbox-min.js");
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/rs-plugin/js/jquery.themepunch.tools.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/rs-plugin/js/jquery.themepunch.revolution.min.js");
+    <!-- Custom -->
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/js/custom.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/js/js-index-02.js");
+}

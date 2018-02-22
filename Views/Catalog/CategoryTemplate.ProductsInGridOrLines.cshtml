@@ -1,0 +1,559 @@
+﻿@model CategoryModel
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    Html.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    Html.AppendPageCssClassParts("html-category-page");
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, this.Url.ActionContext.HttpContext.Request.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+
+@*category breadcrumb*@
+@section Breadcrumb
+    {
+    @if (Model.DisplayCategoryBreadcrumb)
+    {
+        <div class="breadcrumbs">
+            <div class="container">
+                <ol class="breadcrumb breadcrumb--ys pull-left">
+                    <li class="home-link"><a href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")" class="icon icon-home"></a></li>
+
+                    @foreach (var cat in Model.CategoryBreadcrumb)
+                    {
+                        var isLastCategory = cat.Id == Model.Id;
+
+                        @if (isLastCategory)
+                        {
+                            <li><a href="#">@cat.Name</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name">@cat.Name</a></li>
+                            <span class="delimiter">@breadcrumbDelimiter</span>
+                        }
+
+                    }
+                </ol>
+            </div>
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })
+    }
+}
+
+<div class="container">
+    <!-- two columns -->
+    <div class="row">
+        <!-- left column -->
+        <aside class="col-md-4 col-lg-3 col-xl-2" id="leftColumn">
+            <a href="#" class="slide-column-close visible-sm visible-xs"><span class="icon icon-chevron_left"></span>back</a>
+            <div class="filters-block visible-xs">
+                <div class="filters-row__select">
+                    <label>Sort by: </label>
+                    <div class="select-wrapper">
+                        <select class="select--ys">
+                            <option>Position</option>
+                            <option>Price</option>
+                            <option>Rating</option>
+                        </select>
+                    </div>
+                    <a href="#" class="sort-direction icon icon-arrow_back"></a>
+                </div>
+                <div class="filters-row__select">
+                    <label>Show: </label>
+                    <div class="select-wrapper">
+                        <select class="select--ys">
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                </div>
+                <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
+            </div>
+            <!-- shopping by block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title">SHOPPING BY:</h4>
+                <div class="collapse-block__content">
+                    <ul class="filter-list">
+                        <li> Color: <span>White</span><a href="#" class="icon icon-clear icon-to-right"></a> </li>
+                        <li> Size: <span>S</span><a href="#" class="icon icon-clear icon-to-right"></a> </li>
+                    </ul>
+                    <a class="btn btn--ys btn--sm btn--light">Clear All</a>
+                </div>
+            </div>
+            <!-- /shopping by block -->
+            <!-- category block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title ">WOMENS</h4>
+                <div class="collapse-block__content">
+                    <ul class="expander-list">
+                        <li class="active">
+                            <a href="#">TOPS</a><span class="expander"></span>
+                            <ul>
+                                <li class="active"><a href="#">Blouses &amp; Shirts</a></li>
+                                <li><a href="#">Dresses</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">BOTTOMS</a><span class="expander"></span>
+                            <ul>
+                                <li><a href="#">Trousers</a></li>
+                                <li><a href="#">Jeans</a></li>
+                                <li><a href="#">Leggings</a></li>
+                                <li><a href="#">Jumpsuit &amp; shorts</a></li>
+                                <li><a href="#">Skirts</a></li>
+                                <li><a href="#">Tights</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">ACCESSORIES</a><span class="expander"></span>
+                            <ul>
+                                <li><a href="#">Jewellery</a></li>
+                                <li><a href="#">Hats</a></li>
+                                <li><a href="#">Scarves &amp; snoods</a></li>
+                                <li><a href="#">Belts</a></li>
+                                <li><a href="#">Bags</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Sunglasses</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /category block -->
+
+            <div class="product-filters">
+                @*filtering*@
+                @if (Model.PagingFilteringContext.PriceRangeFilter.Enabled)
+                {
+                    @await Html.PartialAsync("_FilterPriceBox", Model.PagingFilteringContext.PriceRangeFilter)
+                }
+                @*filtering*@
+                @if (Model.PagingFilteringContext.SpecificationFilter.Enabled)
+                {
+                    @await Html.PartialAsync("_FilterSpecsBox", Model.PagingFilteringContext.SpecificationFilter)
+                }
+            </div>
+
+
+            <!-- price slider block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title">PRICE</h4>
+                <div class="collapse-block__content">
+                    <div id="priceSlider" class="price-slider"></div>
+                    <form action="#">
+                        <div class="price-input">
+                            <label>From:</label>
+                            <input type="text" id="priceMin" />
+                        </div>
+                        <div class="price-input-divider">-</div>
+                        <div class="price-input">
+                            <label>To:</label>
+                            <input type="text" id="priceMax" />
+                        </div>
+                        <div class="price-input">
+                            <button type="submit" class="btn btn--ys btn--md">Filter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /price slider block -->
+            <!-- size block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title">SIZE</h4>
+                <div class="collapse-block__content">
+                    <ul class="options-swatch options-swatch--size options-swatch--lg">
+                        <li><a href="#">XS</a></li>
+                        <li><a href="#">S</a></li>
+                        <li><a href="#">M</a></li>
+                        <li><a href="#">L</a></li>
+                        <li><a href="#">XL</a></li>
+                        <li><a href="#">2XL</a></li>
+                        <li><a href="#">3XL</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /size block -->
+            <!-- color block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title">COLOR</h4>
+                <div class="collapse-block__content">
+                    <ul class="options-swatch options-swatch--color options-swatch--lg">
+                        <li><a href="#"><span class="swatch-label color-black"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-grey"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-light-grey"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-blue"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-dark-turquoise "></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-orange"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-purple"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-pale-violet-red"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-red"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-green"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-yellow"></span></a></li>
+                        <li><a href="#"><span class="swatch-label color-tan"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /color block -->
+            <!-- brands block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">BRANDS</h4>
+                <div class="collapse-block__content">
+                    <ul class="simple-list">
+                        <li><a href="#">Levi’s </a></li>
+                        <li><a href="#">Gap</a></li>
+                        <li><a href="#">Zara</a></li>
+                        <li><a href="#">Polo</a></li>
+                        <li><a href="#">Ecco</a></li>
+                        <li><a href="#">H&amp;M</a></li>
+                        <li><a href="#">Diesel</a></li>
+                        <li><a href="#">Bockers</a></li>
+                        <li><a href="#">Lacoste</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /brands block -->
+            <!-- gender block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">GENDER</h4>
+                <div class="collapse-block__content">
+                    <ul class="simple-list">
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Unisex</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /gender block -->
+            <!-- sleeve lenght block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">SLEEVE LENGTH</h4>
+                <div class="collapse-block__content">
+                    <ul class="simple-list">
+                        <li><a href="#">Long</a></li>
+                        <li><a href="#">Short</a></li>
+                        <li><a href="#">3/4</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /sleeve lenght block -->
+            <!-- occasion block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">OCCASION</h4>
+                <div class="collapse-block__content">
+                    <ul class="simple-list">
+                        <li><a href="#">Partywear</a></li>
+                        <li><a href="#">Casual</a></li>
+                        <li><a href="#">Evening</a></li>
+                        <li><a href="#">Workwear</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /occasion block -->
+            <!-- compare block -->
+            <div class="collapse-block open">
+                <h4 class="collapse-block__title">COMPARE PRODUCTS</h4>
+                <div class="collapse-block__content">
+                    <div class="compare">
+                        <div class="compare__item">
+                            <div class="compare__item__image pull-left"><a href="#"><img src="images/product/product-80x100-1.jpg" alt=""></a></div>
+                            <div class="compare__item__delete"><a href="#" class="icon icon-close"></a></div>
+                            <div class="compare__item__title">
+                                <h2><a href="#">Quis nostrud exercit ation ullamco</a></h2>
+                            </div>
+                        </div>
+                        <div class="compare__item">
+                            <div class="compare__item__image pull-left"><a href="#"><img src="images/product/product-80x100-2.jpg" alt=""></a></div>
+                            <div class="compare__item__delete"><a href="#" class="icon icon-close"></a></div>
+                            <div class="compare__item__title">
+                                <h2><a href="#">Quis nostrud exercit ation ullamco</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div><a href="#" class="btn btn--ys btn--md">Compare</a> <a href="#" class="btn btn--ys btn--md btn--light">Clear All</a></div>
+                </div>
+            </div>
+            <!-- /compare block -->
+            <!-- poll block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">COMMUNITY POLL</h4>
+                <div class="collapse-block__content">
+                    <p class="under-form-text color">What is your favorite color</p>
+                    <form id="pollForm" action="#">
+                        <ul class="filter-list">
+                            <li>
+                                <label class="radio">
+                                    <input id="radio1" type="radio" name="radios" checked>
+                                    <span class="outer"><span class="inner"></span></span>Green
+                                </label>
+                            </li>
+                            <li>
+                                <label class="radio">
+                                    <input id="radio2" type="radio" name="radios">
+                                    <span class="outer"><span class="inner"></span></span>Red
+                                </label>
+                            </li>
+                            <li>
+                                <label class="radio">
+                                    <input id="radio3" type="radio" name="radios">
+                                    <span class="outer"><span class="inner"></span></span>Black
+                                </label>
+                            </li>
+                            <li>
+                                <label class="radio">
+                                    <input id="radio4" type="radio" name="radios">
+                                    <span class="outer"><span class="inner"></span></span>Magenta
+                                </label>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn btn--ys btn--md btn--light">Vote</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /poll block -->
+            <!-- featured block -->
+            <div class="collapse-block open coll-products-js">
+                <h4 class="collapse-block__title">FEATURED</h4>
+                <div class="collapse-block__content coll-gallery">
+                </div>
+
+                <div class="coll-gallery-clone" style="display:none">
+
+                    <div class="vertical-carousel vertical-carousel-2 offset-top-10">
+                        <div class="vertical-carousel__item">
+                            <div class="vertical-carousel__item__image pull-left">
+                                <a href="#"><img src="images/product/product-80x100-1.jpg" alt=""></a>
+                            </div>
+                            <div class="vertical-carousel__item__title">
+                                <h2><a href="#">Quis nostrud exercit ation</a></h2>
+                            </div>
+                            <div class="price-box">$26.00 <span class="price-box__old">$28.00</span></div>
+                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                        </div>
+                        <div class="vertical-carousel__item">
+                            <div class="vertical-carousel__item__image pull-left">
+                                <a href="#"><img src="images/product/product-80x100-2.jpg" alt=""></a>
+                            </div>
+                            <div class="vertical-carousel__item__title">
+                                <h2><a href="#">Quis nostrud exercit ation</a></h2>
+                            </div>
+                            <div class="price-box">$26.00</div>
+                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                        </div>
+                        <div class="vertical-carousel__item">
+                            <div class="vertical-carousel__item__image pull-left"><a href="#"><img src="images/product/product-80x100-1.jpg" alt=""></a></div>
+                            <div class="vertical-carousel__item__title">
+                                <h2><a href="#">Quis nostrud exercit ation</a></h2>
+                            </div>
+                            <div class="price-box">$26.00</div>
+                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /featured block -->
+            <!-- tags block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">POPULAR TAGS</h4>
+                <div class="collapse-block__content">
+                    <ul class="tags-list">
+                        <li><a href="#">Grey</a></li>
+                        <li><a href="#">Shirt</a></li>
+                        <li><a href="#">suit</a></li>
+                        <li><a href="#">Dresses </a></li>
+                        <li><a href="#">Outerwear</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /tags block -->
+            <!-- custom block -->
+            <div class="collapse-block">
+                <h4 class="collapse-block__title">CUSTOM BLOCK</h4>
+                <div class="collapse-block__content">
+                    <p class="light-font">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                    <ul class="marker-list">
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Conse ctetur adipisicing</a></li>
+                        <li><a href="#">Elit sed do eiusmod tempor</a></li>
+                    </ul>
+                    <p class="light-font">Amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor.</p>
+                </div>
+            </div>
+            <!-- /custom block -->
+        </aside>
+        <!-- /left column -->
+        <!-- center column -->
+        <aside class="col-md-8 col-lg-9 col-xl-10" id="centerColumn">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsTop, additionalData = Model })
+            <!-- title -->
+            @*<div class="title-box">
+                    <h2 class="text-center text-uppercase title-under">women’s</h2>
+                </div>*@
+            <!-- /title -->
+            <div class="row">
+
+                @if (Model.FeaturedProducts.Count > 0)
+                {
+                    @*<div class="product-grid featured-product-grid">
+                            <div class="title">
+                                <strong>@T("Products.FeaturedProducts")</strong>
+                            </div>
+                            <div class="item-grid">
+                                @foreach (var item in Model.FeaturedProducts)
+                                {
+                                    <div class="item-box">
+                                        @await Html.PartialAsync("_ProductBox", item)
+                                    </div>
+                                }
+                            </div>
+                        </div>*@
+
+
+                    var product1 = Model.FeaturedProducts.Where(x => x.MarkAsNew).OrderByDescending(x => x.Id).Take(1).FirstOrDefault();
+                    if (product1 == null)
+                    {
+                        product1 = Model.FeaturedProducts.OrderByDescending(x => x.Id).Take(1).FirstOrDefault();
+                    }
+
+                    var product2 = Model.FeaturedProducts.OrderByDescending(x => x.ReviewOverviewModel.TotalReviews).Take(1).FirstOrDefault();
+
+
+                    <div class="col-sm-6">
+                        <a href="listing-without-col-without-static-block_06.html" class="banner banner--md link-img-hover">
+                            <span class="figure">
+                                <img src="@product1.DefaultPictureModel.ThumbImageUrl" alt="" class="vis-hid-img-small " style="max-height:350px" />
+                                <img src="@product1.DefaultPictureModel.ImageUrl" alt="" class="vis-hid-img-big  " style="max-height:350px" />
+                                <span class="figcaption">
+                                    <span class="block-table">
+                                        <span class="block-table-cell">
+                                            <span class="banner__title size1">New<br>collection</span>
+                                            <span class="text size2">OF FASHION CLOTHES</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="divider divider-md visible-xs"></div>
+                    <div class="col-sm-6">
+                        <a href="listing-without-col-without-static-block_06.html" class="banner banner--md link-img-hover">
+                            <span class="figure">
+                                <img src="@product2.DefaultPictureModel.ThumbImageUrl" alt="" class="vis-hid-img-small" style="max-height:350px" />
+                                <img src="@product2.DefaultPictureModel.ImageUrl" alt="" class="vis-hid-img-big" style="max-height:350px" />
+                                <span class="figcaption">
+                                    <span class="block-table">
+                                        <span class="block-table-cell">
+                                            <span class="banner__title size2"></span>
+                                            <span class="text size5"><em>Most Views</em></span>
+                                            <span class="btn btn--ys btn--xl">Shop now!</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                }
+            </div>
+
+
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <div class="offset-top-20">
+                    <p class="light-font">@Html.Raw(Model.Description)</p>
+                </div>
+            }
+
+            <div class="divider"></div>
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeSubcategories, additionalData = Model })
+
+
+            @if (Model.SubCategories.Count > 0)
+            {
+                <div class="row">
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        <div class="subcategory-item col-sm-4 col-xs-6 col-xl-one-fifth">
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })">
+                                <span class="figure"> <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" class="img-responsive" /> </span>
+                                <h3 class="subcategory-item__title">@item.Name</h3>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+            <!-- filters row -->
+            @if (Model.Products.Count > 0)
+            {
+                @await Html.PartialAsync("_CatalogSelectors", Model.PagingFilteringContext)
+            }
+            <!-- /filters row -->
+            @if (Model.Products.Count > 0)
+            {
+                <div class="product-listing row">
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4 col-xl-one-fifth">
+                            <!-- product -->
+                            @await Html.PartialAsync("_ProductBox", product)
+                            <!-- /product -->
+                        </div>
+                    }
+
+                </div>
+            }
+            <!-- filters row -->
+            <div class="filters-row">
+                <div class="pull-right">
+
+                    <div class="filters-row__pagination">
+                        @{
+                            var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+                        }
+                        @if (!pager.IsEmpty())
+                        {
+
+                            @pager
+
+                        }
+                    </div>
+                </div>
+
+
+                @*<div class="pull-right">
+                        <div class="filters-row__pagination">
+
+
+
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBottom, additionalData = Model })
+
+                            <ul class="pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><span class="icon icon-chevron_right"></span></a></li>
+                                </ul>
+                        </div>
+                    </div>*@
+            </div>
+            <!-- /filters row -->
+        </aside>
+        <!-- center column -->
+    </div>
+    <!-- /two columns -->
+</div>

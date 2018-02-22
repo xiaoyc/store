@@ -1,0 +1,42 @@
+﻿@model CategoryNavigationModel
+@if (Model.Categories.Count > 0)
+{
+  
+
+
+
+    /*--------------------------------*/
+
+
+     <!--======= navbar-vertical =======-->
+    <nav class="navbar navbar-vertical mobile-menu-off">
+            <div class="responsive-menu mainMenu">
+                <div class="responsive-menu-toggled responsive-menu-view">
+                    <div class="responsive-menu-toggled-controls">
+                        <div class="navbar-toggle">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="menu-text">MENU</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dl-close"><a href="#"><span class="icon icon-close"></span>close</a></li>
+                    
+                    @foreach (var category in Model.Categories)
+                    {
+                        var categoryLineModel = new CategoryNavigationModel.CategoryLineModel
+                        {
+                            CurrentCategoryId = Model.CurrentCategoryId,
+                            Category = category
+                        };
+                        @await Html.PartialAsync("_CategoryLine.Navigation", categoryLineModel)
+
+                    
+                    }
+                
+                </ul>
+            </div>
+        </nav>
+}

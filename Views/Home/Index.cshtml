@@ -1,0 +1,598 @@
+﻿@{
+    Layout = "_ColumnsOne";
+
+    //page class
+    Html.AppendPageCssClassParts("html-home-page");
+}
+<div class="container">
+    <!-- two columns -->
+    <div class="row">
+        <!--====================================== left column ======================================-->
+        <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 ">
+            <h4 class="title-aside-wrapper text-uppercase  mobile-menu-off">Categories</h4>
+            @await Component.InvokeAsync("CategoryNavigation")
+           
+            <!--======= /navbar-vertical =======-->
+            <!--======= banner-asid =======-->
+            <div class="bannerAsid nav-dot hidden-sm  hidden-xs">
+                <!-- slide-->
+                <div class="text-center">
+                    <a href="listing.html"><img class="img-responsive-inline" src="images/custom/banner-aside-01.jpg" alt=""></a>
+                </div>
+                <!-- /slide-->
+                <!-- slide-->
+                <div class="text-center">
+                    <a href="listing.html"><img class="img-responsive-inline" src="images/custom/banner-aside-02.jpg" alt=""></a>
+                </div>
+                <!-- /slide-->
+                <!-- slide-->
+                <div class="text-center">
+                    <a href="listing.html"><img class="img-responsive-inline" src="images/custom/banner-aside-03.jpg" alt=""></a>
+                </div>
+                <!-- /slide-->
+            </div>
+            <!--======= /banner-asid =======-->
+            <div class="divider divider--lg"></div>
+
+            <!--======= facebook =======-->
+            <div class="text-center hidden-sm  hidden-xs">
+                <div class="display-inline-block"><iframe src="http://www.facebook.com/plugins/likebox.php?id=134612429900944&amp;width=270px&amp;connections=9&amp;stream=false&amp;header=false&amp;height=216" style="border:none; overflow:hidden; width:270px; height:216px;"></iframe></div>
+            </div>
+            <!--======= /facebook =======-->
+            <div class="divider divider--lg hidden-sm  hidden-xs"></div>
+            <!--======= testimonials =======-->
+            <div class="fill-bg-custom aside-inner color-white">
+                <h4 class="text-center text-uppercase color-white mega">testimonials</h4>
+                <div class="testimonialsAsid nav-dot nav-dot-invert">
+                    <!-- slide-->
+                    <a href="blog-post-right-column.html" class="link-hover-block">
+                        <div class="text-center">
+                            <img class="img-responsive-inline" src="images/custom/slider-blog-img01.jpg" alt="">
+                            <p>
+                                <span class="icon"></span> Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet, nunc. Ut sit amet turpis.
+                            </p>
+                            <p>
+                                <b>Eleanor</b><br>
+                                <em>designer</em>
+                            </p>
+                        </div>
+                    </a>
+                    <!-- /slide-->
+                    <!-- slide-->
+                    <a href="blog-post-right-column.html" class="link-hover-block">
+                        <div class="text-center">
+                            <img class="img-responsive-inline" src="images/custom/slider-blog-img02.jpg" alt="">
+                            <p>
+                                <span class="icon"></span> Tellus, scelerisque nec, rhoncus eget, laoreet sit amet, nunc. Ut sit amet turpis. Lorem set magna.
+                            </p>
+                            <p>
+                                <b>Piper</b><br>
+                                <em>designer</em>
+                            </p>
+                        </div>
+                    </a>
+                    <!-- /slide-->
+                    <!-- slide-->
+                    <a href="blog-post-right-column.html" class="link-hover-block">
+                        <div class="text-center">
+                            <img class="img-responsive-inline" src="images/custom/slider-blog-img03.jpg" alt="">
+                            <p>
+                                <span class="icon"></span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod.
+                            </p>
+                            <p>
+                                <b>Mark</b><br>
+                                <em>designer</em>
+                            </p>
+                        </div>
+                    </a>
+                    <!-- /slide-->
+                </div>
+            </div>
+            <!--======= /testimonials =======-->
+            <div class="divider divider--lg"></div>
+            <!--======= carousel-new =======-->
+            <!-- title -->
+            <h4 class="text-uppercase mega">RECENT POSTS</h4>
+            <!-- /title -->
+            <div class="carousel-products row layout-none-xl" id="postsCarousel">
+                <!-- slide-->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-01.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="recent-post-box__text">
+                                <h4><a href="blog-post-right-column.html">Mauris lacinia lectus</a></h4>
+                                <div class="author">by <b>Admin</b></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                                </p>
+                                <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+                <!-- slide -->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-02.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="recent-post-box__text">
+                                <h4><a href="blog-post-right-column.html">Lorem ipsum dolor</a> </h4>
+                                <div class="author">by <b>Admin</b></div>
+                                <p>
+                                    Dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                                </p>
+                                <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+                <!-- slide -->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-03.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="recent-post-box__text">
+                                <h4><a href="blog-post-right-column.html">dolore magna aliqua</a></h4>
+                                <div class="author">by <b>Admin</b></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                                </p>
+                                <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+                <!-- slide-->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-01.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="recent-post-box__text">
+                                <h4><a href="blog-post-right-column.html">Mauris lacinia lectus</a></h4>
+                                <div class="author">by <b>Admin</b></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                                </p>
+                                <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+                <!-- slide -->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-02.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="recent-post-box__text">
+                                <h4><a href="blog-post-right-column.html">Lorem ipsum dolor</a> </h4>
+                                <div class="author">by <b>Admin</b></div>
+                                <p>
+                                    Dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                                </p>
+                                <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+                <!-- slide -->
+                <div class="col-sm-3 col-xl-6">
+                    <!--  -->
+                    <div class="recent-post-box">
+                        <div class="col-lg-12 col-xl-12">
+                            <a href="blog-post-right-column.html">
+                                <span class="figure">
+                                    <img src="images/custom/recent-posts-03.jpg" alt="">
+                                    <span class="figcaption label-top-left">
+                                        <span>
+                                            <b>26</b>
+                                            <em>jun</em>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <h4><a href="blog-post-right-column.html">dolore magna aliqua</a></h4>
+                            <div class="author">by <b>Admin</b></div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
+                            </p>
+                            <a class="link-commet" href="blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
+                        </div>
+                    </div>
+                    <!-- / -->
+                </div>
+                <!-- /slide -->
+            </div>
+            <div class="carousel-products__button button-bottom carousel-products__button_aside">
+                <span class="btn-prev"></span>
+                <span class="btn-next"></span>
+            </div>
+            <!--======= /carousel-new =======-->
+            <div class="divider divider--lg visible-xs"></div>
+
+        </aside>
+        <!--====================================== /left column ======================================-->
+        <!--====================================== center column ======================================-->
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-10" id="centerColumn">
+            <div class="divider divider--lg visible-sm visible-xs"></div>
+            <!-- Slider section -->
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageTop })
+            <!-- END REVOLUTION SLIDER -->
+
+
+         
+            <!-- category section -->
+            <div class="divider divider--md0 visible-sm visible-xs"></div>
+            <div class="content-md">
+                <div class="row">
+                    <div class="category-carousel">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <a href="listing.html" class="banner zoom-in">
+                                <span class="figure">
+                                    <img src="images/custom/category-4.jpg" alt="" />
+                                    <span class="figcaption">
+                                        <span class="block-table">
+                                            <span class="block-table-cell">
+                                                <span class="banner__title size6">women’s</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <a href="listing.html" class="banner zoom-in">
+                                <span class="figure">
+                                    <img src="images/custom/category-5.jpg" alt="" />
+                                    <span class="figcaption">
+                                        <span class="block-table">
+                                            <span class="block-table-cell">
+                                                <span class="banner__title size6">accessories</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <a href="listing.html" class="banner zoom-in">
+                                <span class="figure">
+                                    <img src="images/custom/category-6.jpg" alt="" />
+                                    <span class="figcaption">
+                                        <span class="block-table">
+                                            <span class="block-table-cell">
+                                                <span class="banner__title size6">men’s</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider divider--md visible-sm visible-xs"></div>
+            <!-- /category section -->
+            <!--  -->
+            <div class="content-sm">
+              @await Component.InvokeAsync("HomepageBestSellers")
+            </div>
+            <!-- / -->
+            <hr class="hr-md">
+            <!--  -->
+            <div class="content-sm">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-xl-7">
+                      @await Component.InvokeAsync("HomepageProducts")
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-xl-5">
+                        <div class="divider--lg visible-sm visible-xs"></div>
+                        <!-- title -->
+                        <div class="title-with-button">
+                            <div class="carousel-products__button  pull-right"> <span class="btn-prev"></span> <span class="btn-next"></span> </div>
+                            <h2 class="text-left text-uppercase title-default pull-left">New</h2>
+                        </div>
+                        <!-- /title -->
+                        <!-- carousel -->
+                        <div class="carousel-products row" id="carouselNew">
+                            <div class="col-lg-3">
+                                <!-- product -->
+                                <div class="product">
+                                    <div class="product__inside">
+                                        <!-- product image -->
+                                        <div class="product__inside__image">
+                                            <a href="product.html"> <img src="images/product/product-7.jpg" alt=""> </a>
+                                            <!-- quick-view -->
+                                            <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a>
+                                            <!-- /quick-view -->
+                                        </div>
+                                        <!-- /product image -->
+                                        <!-- label news -->
+                                        <div class="product__label product__label--right product__label--new"> <span>new</span> </div>
+                                        <!-- /label news -->
+                                        <!-- product name -->
+                                        <div class="product__inside__name">
+                                            <h2><a href="product.html">Mauris lacinia lectus</a></h2>
+                                        </div>
+                                        <!-- /product name -->
+                                        <!-- product price -->
+                                        <div class="product__inside__price price-box">$86.00</div>
+                                        <!-- /product price -->
+                                        <div class="product__inside__hover">
+                                            <!-- product info -->
+                                            <div class="product__inside__info">
+                                                <div class="product__inside__info__btns">
+                                                    <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a>
+                                                </div>
+                                                <ul class="product__inside__info__link hidden-xs">
+                                                    <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+                                                    <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /product info -->
+                                            <!-- product rating -->
+                                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                            <!-- /product rating -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /product -->
+                            </div>
+                            <div class="col-lg-3">
+                                <!-- product -->
+                                <div class="product">
+                                    <div class="product__inside">
+                                        <!-- product image -->
+                                        <div class="product__inside__image">
+                                            <a href="product.html"> <img src="images/product/product-2.jpg" alt=""> </a>
+                                            <!-- quick-view -->
+                                            <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a>
+                                            <!-- /quick-view -->
+                                        </div>
+                                        <!-- /product image -->
+                                        <!-- label news -->
+                                        <div class="product__label product__label--right product__label--new"> <span>new</span> </div>
+                                        <!-- /label news -->
+                                        <!-- product name -->
+                                        <div class="product__inside__name">
+                                            <h2><a href="product.html">Mauris lacinia lectus</a></h2>
+                                        </div>
+                                        <!-- /product name -->
+                                        <!-- product price -->
+                                        <div class="product__inside__price price-box">$23.00</div>
+                                        <!-- /product price -->
+                                        <div class="product__inside__hover">
+                                            <!-- product info -->
+                                            <div class="product__inside__info">
+                                                <div class="product__inside__info__btns">
+                                                    <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a>
+                                                </div>
+                                                <ul class="product__inside__info__link hidden-xs">
+                                                    <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+                                                    <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /product info -->
+                                            <!-- product rating -->
+                                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                            <!-- /product rating -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /product -->
+                            </div>
+                            <div class="col-lg-3">
+                                <!-- product -->
+                                <div class="product">
+                                    <div class="product__inside">
+                                        <!-- product image -->
+                                        <div class="product__inside__image">
+                                            <a href="product.html"> <img src="images/product/product-7.jpg" alt=""> </a>
+                                            <!-- quick-view -->
+                                            <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a>
+                                            <!-- /quick-view -->
+                                        </div>
+                                        <!-- /product image -->
+                                        <!-- label news -->
+                                        <div class="product__label product__label--right product__label--new"> <span>new</span> </div>
+                                        <!-- /label news -->
+                                        <!-- product name -->
+                                        <div class="product__inside__name">
+                                            <h2><a href="product.html">Mauris lacinia lectus</a></h2>
+                                        </div>
+                                        <!-- /product name -->
+                                        <!-- product price -->
+                                        <div class="product__inside__price price-box">$86.00</div>
+                                        <!-- /product price -->
+                                        <div class="product__inside__hover">
+                                            <!-- product info -->
+                                            <div class="product__inside__info">
+                                                <div class="product__inside__info__btns">
+                                                    <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a>
+                                                </div>
+                                                <ul class="product__inside__info__link hidden-xs">
+                                                    <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+                                                    <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /product info -->
+                                            <!-- product rating -->
+                                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                            <!-- /product rating -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /product -->
+                            </div>
+                            <div class="col-lg-3">
+                                <!-- product -->
+                                <div class="product">
+                                    <div class="product__inside">
+                                        <!-- product image -->
+                                        <div class="product__inside__image">
+                                            <a href="product.html"> <img src="images/product/product-2.jpg" alt=""> </a>
+                                            <!-- quick-view -->
+                                            <a href="#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a>
+                                            <!-- /quick-view -->
+                                        </div>
+                                        <!-- /product image -->
+                                        <!-- label news -->
+                                        <div class="product__label product__label--right product__label--new"> <span>new</span> </div>
+                                        <!-- /label news -->
+                                        <!-- product name -->
+                                        <div class="product__inside__name">
+                                            <h2><a href="product.html">Mauris lacinia lectus</a></h2>
+                                        </div>
+                                        <!-- /product name -->
+                                        <!-- product price -->
+                                        <div class="product__inside__price price-box">$23.00</div>
+                                        <!-- /product price -->
+                                        <div class="product__inside__hover">
+                                            <!-- product info -->
+                                            <div class="product__inside__info">
+                                                <div class="product__inside__info__btns">
+                                                    <a href="#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+                                                    <a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a>
+                                                </div>
+                                                <ul class="product__inside__info__link hidden-xs">
+                                                    <li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+                                                    <li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /product info -->
+                                            <!-- product rating -->
+                                            <div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+                                            <!-- /product rating -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /product -->
+                            </div>
+                        </div>
+                        <!-- /carousel -->
+                    </div>
+                </div>
+            </div>
+            <!-- / -->
+            <hr>
+            <!-- brands-carousel -->
+            <div class="content section-indent-bottom">
+                <div class="row">
+                    <div class="brands-carousel">
+                        <div><a href="#"><img src="images/custom/brand-01.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-02.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-03.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-04.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-05.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-06.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-07.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-08.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-09.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-10.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-01.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-02.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-03.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-04.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-05.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-06.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-07.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-08.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-09.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/custom/brand-10.png" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /brands-carousel -->
+        </div>
+        <!--====================================== /center column ======================================-->
+    </div>
+    <!-- /two columns -->
+</div>

@@ -1,0 +1,209 @@
+﻿@model TopMenuModel
+<nav class="navbar">
+    <div class="responsive-menu mainMenu">
+        <!-- Mobile menu Button-->
+        <div class="col-xs-2 visible-mobile-menu-on">
+            <div class="expand-nav compact-hidden">
+                <a href="#off-canvas-menu" class="off-canvas-menu-toggle">
+                    <div class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="menu-text">MENU</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- //end Mobile menu Button -->
+        <ul class="nav navbar-nav">
+            <li class="dl-close"><a href="#"><span class="icon icon-close"></span>close</a></li>
+            
+            @if (Model.DisplayHomePageMenuItem)
+            {
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a href="@Url.RouteUrl("HomePage")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@T("HomePage")</span></a>
+                </li>
+            }
+
+            @{
+                var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+            }
+            @foreach (var category in rootCategories)
+            {
+                var categoryLineModel = new TopMenuModel.CategoryLineModel
+                {
+                    Category = category
+                };
+                @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
+            }
+
+            @foreach (var topic in Model.Topics)
+            {
+                
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@topic.Name</span></a>
+                </li>
+            }
+            @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+            {
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a  href="@Url.RouteUrl("NewProducts")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@T("Products.NewProducts")</span></a>
+                </li>
+            }
+            @if (Model.DisplayProductSearchMenuItem)
+            {
+              
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a href="@Url.RouteUrl("ProductSearch")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@T("Search")</span></a>
+                </li>
+            }
+            @if (Model.DisplayCustomerInfoMenuItem)
+            {
+               
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a  href="@Url.RouteUrl("CustomerInfo")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@T("Account.MyAccount")</span></a>
+                </li>
+            }
+            @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+            {
+                
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a href="@Url.RouteUrl("Blog")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">>@T("Blog")</span></a>
+                </li>
+            }
+            @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+            {
+                
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a  href="@Url.RouteUrl("Boards")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">@T("Forum.Forums")</span></a>
+                </li>
+            }
+            @if (Model.DisplayContactUsMenuItem)
+            {
+                
+                <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a href="@Url.RouteUrl("ContactUs")" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">>@T("ContactUs")</span></a>
+                </li>
+            }
+
+          
+        </ul>
+    </div>
+</nav>
+
+@*<ul class="top-menu">
+    @await Component.InvokeAsync("Widget", new { widgetZone = "header_menu_before" })
+    @if (Model.DisplayHomePageMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+    }
+    @{
+        var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+    }
+    @foreach (var category in rootCategories)
+    {
+        var categoryLineModel = new TopMenuModel.CategoryLineModel
+        {
+            Category = category
+        };
+        @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
+    }
+    @foreach (var topic in Model.Topics)
+    {
+        <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+    }
+    @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+    }
+    @if (Model.DisplayProductSearchMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+    }
+    @if (Model.DisplayCustomerInfoMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+    }
+    @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+    }
+    @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+    }
+    @if (Model.DisplayContactUsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+    }
+    @await Component.InvokeAsync("Widget", new { widgetZone = "header_menu_after" })
+</ul>
+@{
+    var rootCategoriesResponsive = Model.Categories.ToList();
+    //name it "Categories" if we have only categories. Otherwise, "Menu"
+    var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
+    <div class="menu-toggle">@responsiveMenuTitle</div>
+    <ul class="top-menu mobile">
+        @await Component.InvokeAsync("Widget", new { widgetZone = "mob_header_menu_before" })
+        @if (Model.DisplayHomePageMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+        }
+        @foreach (var category in rootCategoriesResponsive)
+        {
+            var categoryLineModel = new TopMenuModel.CategoryLineModel
+            {
+                Category = category,
+                ResponsiveMobileMenu = true
+            };
+            @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
+        }
+        @foreach (var topic in Model.Topics)
+        {
+            <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+        }
+        @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+        }
+        @if (Model.DisplayProductSearchMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+        }
+        @if (Model.DisplayCustomerInfoMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+        }
+        @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+        }
+        @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+        }
+        @if (Model.DisplayContactUsMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = "mob_header_menu_after" })
+    </ul>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.menu-toggle').click(function () {
+                $(this).siblings('.top-menu.mobile').slideToggle('slow');
+            });
+            $('.top-menu.mobile .sublist-toggle').click(function () {
+                $(this).siblings('.sublist').slideToggle('slow');
+            });
+        });
+    </script>
+}*@

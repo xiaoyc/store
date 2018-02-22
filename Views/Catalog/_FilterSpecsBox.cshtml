@@ -1,0 +1,91 @@
+﻿@model CatalogPagingFilteringModel.SpecificationFilterModel
+@{
+    var notFilteredItemsGroups = Model.NotFilteredItems.GroupBy(x => x.SpecificationAttributeName);
+    var alreadyFilteredItemsGroups = Model.AlreadyFilteredItems.GroupBy(x => x.SpecificationAttributeName);
+}
+@if (Model.Enabled)
+{
+    @if (Model.NotFilteredItems.Count > 0)
+    {
+        @foreach (var group in notFilteredItemsGroups)
+        {
+            var groupList = group.ToList();
+
+            @*<ul class="group product-spec-group @(groupList.Any(x => !string.IsNullOrEmpty(x.SpecificationAttributeOptionColorRgb)) ? "product-spec-color" : null )">
+                    <li class="title">
+                        <strong>@groupList[0].SpecificationAttributeName</strong>
+                    </li>
+                    @foreach (var spec in groupList)
+                    {
+                        <li class="item @(!string.IsNullOrEmpty(spec.SpecificationAttributeOptionColorRgb) ? "color-item" : null)">
+                            <a href="@spec.FilterUrl">
+                                @if (string.IsNullOrEmpty(spec.SpecificationAttributeOptionColorRgb))
+                                {
+                                    @spec.SpecificationAttributeOptionName
+                                }
+                                else
+                                {
+                                    <div class="attribute-squares color-squares">
+                                        <span class="attribute-square-container" title="@spec.SpecificationAttributeOptionName">
+                                            <span class="attribute-square" style="background-color: @(spec.SpecificationAttributeOptionColorRgb);">&nbsp;</span>
+                                        </span>
+                                    </div>
+                                }
+                            </a>
+                        </li>
+                    }
+                </ul>*@
+
+            var iscolorItem = groupList.Any(x => !string.IsNullOrEmpty(x.SpecificationAttributeOptionColorRgb));
+
+            if (iscolorItem)
+            {
+                <div class="collapse-block open">
+                    <h4 class="collapse-block__title">COLOR</h4>
+                    <div class="collapse-block__content">
+                        <ul class="options-swatch options-swatch--color options-swatch--lg">
+                            @foreach (var spec in groupList)
+                            {
+                                <li><a href="#"><span class="swatch-label" style="background-color: @(spec.SpecificationAttributeOptionColorRgb);">&nbsp;</span></a></li>
+                            }
+                            @*<li><a href="#"><span class="swatch-label color-black"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-grey"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-light-grey"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-blue"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-dark-turquoise "></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-orange"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-purple"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-pale-violet-red"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-red"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-green"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-yellow"></span></a></li>
+                                <li><a href="#"><span class="swatch-label color-tan"></span></a></li>*@
+                        </ul>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <!-- size block -->
+                <div class="collapse-block open">
+                    <h4 class="collapse-block__title">SIZE</h4>
+                    <div class="collapse-block__content">
+                        <ul class="options-swatch options-swatch--size options-swatch--lg">
+                            @foreach (var spec in groupList)
+                            {
+                                <li><a href="#">@spec.SpecificationAttributeOptionName</a></li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            }
+        }
+    }
+
+
+
+    <!-- /size block -->
+
+
+}

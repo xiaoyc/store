@@ -1,0 +1,22 @@
+﻿@model IList<ProductOverviewModel>
+@if (Model.Count > 0)
+{
+  <!-- title -->
+    <div class="title-with-button">
+        <div class="carousel-products__button pull-right"> <span class="btn-prev"></span> <span class="btn-next"></span> </div>
+        <h2 class="text-left text-uppercase title-default pull-left">On Sale</h2>
+    </div>
+                        <!-- /title -->
+                        <!-- carousel -->
+    <div class="carousel-products row" id="carouselSale">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-3">
+                <!-- product -->
+                @await Html.PartialAsync("_ProductBox", product)
+                <!-- /product -->
+            </div>
+        }
+    </div>
+                        <!-- /carousel -->
+}

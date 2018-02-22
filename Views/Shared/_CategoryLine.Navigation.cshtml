@@ -1,0 +1,89 @@
+﻿@model CategoryNavigationModel.CategoryLineModel
+
+@functions{
+    public bool BreadCrumbContainsCurrentCategoryId(CategorySimpleModel category)
+    {
+        if (Model.CurrentCategoryId == 0)
+            return false;
+
+        if (category.Id == Model.CurrentCategoryId)
+            return true;
+
+        foreach (var subCategory in category.SubCategories)
+        {
+            if (BreadCrumbContainsCurrentCategoryId(subCategory))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+@{
+    bool active = Model.Category.Id == Model.CurrentCategoryId || Model.Category.SubCategories.Count(BreadCrumbContainsCurrentCategoryId) > 0;
+    bool last = Model.Category.Id == Model.CurrentCategoryId;
+    string liClass = active ? "active" : "inactive";
+    if (last)
+    {
+        liClass += " last";
+    }
+}
+<li  class="dropdown dropdown-mega-menu dropdown-two-col">
+    <a href="@Url.RouteUrl("Category", new { SeName = Model.Category.SeName })"  class="dropdown-toggle" data-toggle="dropdown">@Model.Category.Name
+        @if (Model.Category.NumberOfProducts.HasValue)
+        {
+            <text> </text>@T("Categories.TotalProducts", Model.Category.NumberOfProducts.Value)
+        }
+        <span class="icon icon-navigate_next pull-right"></span>
+    </a>
+    @{
+
+        //if (Model.Category.Id == Model.CurrentCategoryId ||
+        //   Model.Category.SubCategories.Count(BreadCrumbContainsCurrentCategoryId) > 0)
+
+        if (true)
+        {
+            if (Model.Category.SubCategories.Count > 0)
+            {
+                <ul class="dropdown-menu multicolumn two-col" role="menu">
+                    <li class="dl-back"><a href="#"><span class="icon icon-chevron_left"></span>back</a></li>
+                    @foreach (var subCategory in Model.Category.SubCategories)
+                    {
+                        var categoryLineModel = new CategoryNavigationModel.CategoryLineModel
+                        {
+                            CurrentCategoryId = Model.CurrentCategoryId,
+                            Category = subCategory
+                        };
+                        @*@await Html.PartialAsync("_CategoryLine.Navigation", categoryLineModel)*@
+
+                        <li><a href="@Url.RouteUrl("Category", new { SeName = Model.Category.SeName })">@categoryLineModel.Category.Name</a></li>
+                    }
+                </ul>
+            }
+        }
+    }
+</li>
+
+@*<li class="dropdown dropdown-mega-menu dropdown-two-col">
+    <a href="about.html" class="dropdown-toggle" data-toggle="dropdown">
+        PAGES
+        <span class="icon icon-navigate_next pull-right"></span>
+    </a>
+    <ul class="dropdown-menu multicolumn two-col" role="menu">
+        <li class="dl-back"><a href="#"><span class="icon icon-chevron_left"></span>back</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="support-24.html">Support 24/7 page</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="under-construction.html">Under Construction</a></li>
+        <li><a href="warranty.html">Warranty Page</a></li>
+        <li><a href="site-map.html">Site Map</a></li>
+        <li><a href="delivery-page.html">Delivery Page</a></li>
+        <li><a href="payment-page.html">Payment page</a></li>
+        <li><a href="typography.html">Typography</a></li>
+        <li><a href="page-404.html">Page 404</a></li>
+        <li><a href="_newsletter-template/newsletter-template.html">Newsletter template</a></li>
+    </ul>
+</li>*@
