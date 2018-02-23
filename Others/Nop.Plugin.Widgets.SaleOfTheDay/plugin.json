@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "The Sale Of The Day",
+  "SystemName": "Widgets.TheSaleOfTheDay",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "Yung",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.SaleOfTheDay.dll",
+  "Description": "This plugin allows you to display the sale of the day"
+}

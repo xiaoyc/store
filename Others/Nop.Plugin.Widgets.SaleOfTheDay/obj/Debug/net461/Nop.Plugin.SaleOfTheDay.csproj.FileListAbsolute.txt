@@ -1,0 +1,17 @@
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\plugin.json
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\Views\Configure.cshtml
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\Views\_ViewImports.cshtml
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\logo.jpg
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\Nop.Plugin.SaleOfTheDay.dll
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Presentation\Nop.Web\Plugins\SaleOfTheDay\Nop.Plugin.SaleOfTheDay.pdb
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.csproj.CoreCompileInputs.cache
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.AssemblyInfoInputs.cache
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.AssemblyInfo.cs
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.dll
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.pdb
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.csprojResolveAssemblyReference.cache
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.csproj.CoreCompileInputs.cache
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.AssemblyInfoInputs.cache
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.AssemblyInfo.cs
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.dll
+E:\Private\nopCommerce-release-3.90\11\nopCommerce-develop\nopCommerce-develop\src\Plugins\Nop.Plugin.DiscountRules.SaleOfTheDay\obj\Debug\net461\Nop.Plugin.SaleOfTheDay.pdb
