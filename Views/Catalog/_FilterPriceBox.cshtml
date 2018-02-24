@@ -25,32 +25,44 @@
 }
 @if (Model.Enabled)
 {
-    <div class="product-filter price-range-filter">
-        <div class="filter-title">
-            <strong>@T("Filtering.PriceRangeFilter")</strong>
-        </div>
-        <div class="filter-content">
-            @if (selectedItem == null)
-            {
-                <div class="available-items">
-                    <ul class="group price-range-group">
-                        @foreach (var item in Model.Items)
-                        {
-                            <li><a href="@item.FilterUrl">@Html.Raw(FormatPriceRangeText(item))</a></li>
-                        }
-                    </ul>
-                </div>
-            }
-            else
-            {
-                <div class="filtered-items">
-                    <span class="item">@Html.Raw(FormatPriceRangeText(selectedItem))</span>
-                </div>
-                <div class="remove-filter">
-                    <a href="@Model.RemoveFilterUrl">@T("Filtering.PriceRangeFilter.Remove")</a>
-                </div>
-            }
-        </div>
+    @*<div class="product-filter price-range-filter">
+            <div class="filter-title">
+                <strong>@T("Filtering.PriceRangeFilter")</strong>
+            </div>
+            <div class="filter-content">
+                @if (selectedItem == null)
+                {
+                    <div class="available-items">
+                        <ul class="group price-range-group">
+                            @foreach (var item in Model.Items)
+                            {
+                                <li><a href="@item.FilterUrl">@Html.Raw(FormatPriceRangeText(item))</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="filtered-items">
+                        <span class="item">@Html.Raw(FormatPriceRangeText(selectedItem))</span>
+                    </div>
+                    <div class="remove-filter">
+                        <a href="@Model.RemoveFilterUrl">@T("Filtering.PriceRangeFilter.Remove")</a>
+                    </div>
+                }
+            </div>
 
+        </div>*@
+
+    <div class="collapse-block open">
+        <h4 class="collapse-block__title">@T("Filtering.PriceRangeFilter")</h4>
+        <div class="collapse-block__content" style="display: block;">
+            <ul class="simple-list">
+                @foreach (var item in Model.Items)
+                {
+                    <li><a href="@item.FilterUrl">@Html.Raw(FormatPriceRangeText(item))</a></li>
+                }
+            </ul>
+        </div>
     </div>
 }
