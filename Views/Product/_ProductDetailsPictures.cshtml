@@ -1,7 +1,9 @@
 ﻿@model ProductDetailsModel
+@inject IThemeContext themeContext
 @{
-    Html.AddScriptParts(ResourceLocation.Footer, "~/lib/magnific-popup/jquery.magnific-popup.min.js");
-    Html.AddCssFileParts("~/lib/magnific-popup/magnific-popup.css");
+    var themeName = themeContext.WorkingThemeName;
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/magnific-popup/jquery.magnific-popup.min.js");
+    //Html.AddCssFileParts("~/lib/magnific-popup/magnific-popup.css");
 }
 @*<div class="gallery">
         <div class="picture">
@@ -67,8 +69,8 @@
             @foreach (var picture in Model.PictureModels)
             {
                 @*<div class="thumb-item">
-                    <img src="@picture.ThumbImageUrl" alt="@picture.AlternateText" title="@picture.Title" data-defaultsize="@picture.ImageUrl" data-fullsize="@picture.FullSizeImageUrl" />
-                </div>*@
+                        <img src="@picture.ThumbImageUrl" alt="@picture.AlternateText" title="@picture.Title" data-defaultsize="@picture.ImageUrl" data-fullsize="@picture.FullSizeImageUrl" />
+                    </div>*@
 
                 <li><a href="#" data-image="@picture.ImageUrl" data-zoom-image="@picture.FullSizeImageUrl"><img src="@picture.ThumbImageUrl" alt="@picture.AlternateText" /></a></li>
             }
