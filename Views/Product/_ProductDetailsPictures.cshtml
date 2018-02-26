@@ -3,7 +3,10 @@
 @{
     var themeName = themeContext.WorkingThemeName;
     Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/magnific-popup/jquery.magnific-popup.min.js");
-    //Html.AddCssFileParts("~/lib/magnific-popup/magnific-popup.css");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/elevatezoom/jquery.elevateZoom-3.0.8.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/external/imagesloaded/imagesloaded.pkgd.min.js");
+
+    Html.AddCssFileParts($"~/Themes/{themeName}/Content/external/magnific-popup/magnific-popup.css");
 }
 @*<div class="gallery">
         <div class="picture">

@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Http.Extensions
 @using Nop.Core.Domain.Seo;
 @inject SeoSettings seoSettings
+@inject IThemeContext themeContext
 @{
     Layout = "_ColumnsOne";
 
@@ -41,6 +42,10 @@
         Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
         Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + this.Url.ActionContext.HttpContext.Request.GetEncodedUrl() + "\" />");
     }
+
+    var themeName = themeContext.WorkingThemeName;
+
+    Html.AddScriptParts(ResourceLocation.Footer, $"~/Themes/{themeName}/Content/js/js-product.js");
 }
 <!--product breadcrumb-->
 @section Breadcrumb
